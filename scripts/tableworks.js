@@ -1,3 +1,5 @@
+'use strict';
+
 let generateTableButton = document.getElementById('generateTableButton');
 let deleteTableButton = document.getElementById('deleteTableButton');
 let probTable = document.getElementById('probTable');
@@ -80,3 +82,64 @@ generateTableButton.addEventListener('click', () => {
     </tbody>    
   </table>`
 })
+
+var labels = [
+  '상위1%',
+  '상위2.5%',
+  '상위5%',
+  '상위10%',
+  '상위25%',
+  '상위50%',
+  '상위75%',
+  '상위90%',
+  '상위95%',
+  '상위97.5%',
+  '상위99%',
+];
+
+const percentiles = [1,2.5,5,10,25,50,75,90,95,97.5,99];
+const reqTrials = [1,3,5,11,29,69,137,229,299,367,459];
+const coords = percentiles.map( (v,i) => ({x:v, y:reqTrials[i]}) );
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    labels: labels,
+    datasets: [{
+      label:['백분율, 뽑기횟수'],
+      fill:true,
+      data: coords,
+    }]
+  },
+  options: {
+    responsive: true,
+    showLine: true,
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: '뽑기횟수(회)'
+        },        
+      },
+      x: {
+        title: {
+          display: true,
+          text: '백분율(%)'
+        },        
+      },
+    },
+    elements: {
+      point: {
+        radius: 7
+      }
+    },
+
+    plugins: {
+      legend: {
+        display: false
+      },
+    }
+  }
+});
