@@ -1,5 +1,3 @@
-'use strict';
-
 class customMain extends HTMLElement
 {
   connectedCallback() {
