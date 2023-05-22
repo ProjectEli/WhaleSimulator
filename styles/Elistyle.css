@@ -1,0 +1,10 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css);
+
+body {
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: bold;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+}
