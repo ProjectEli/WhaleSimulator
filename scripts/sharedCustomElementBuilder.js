@@ -22,7 +22,7 @@ class NavBuilder extends HTMLElement
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="direct.html" role="button">
+              <a class="nav-link" href="/WhaleSimulator/direct" role="button">
                 직접뽑기
               </a>
             </li>
