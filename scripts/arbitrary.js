@@ -1,36 +1,60 @@
-class customMain extends HTMLElement
-{
+class customMain extends HTMLElement {
   connectedCallback() {
     this.outerHTML = `
     <main>
     </main>`;
 
-    document.getElementById('btn-prob-calc').addEventListener( 'click', () => {
+    document.getElementById('btn-prob-calc').addEventListener('click', () => {
       // todo: some visibility and availability functions
-      setTimeout(ArbitraryProbCalc,100); // ms
-    } )
+      ArbitraryProbCalc();
+    })
   }
 }
 
-customElements.define('main-placeholder',customMain)
+customElements.define('main-placeholder', customMain)
+
+/**
+ * format probability string properly
+ * @param {number} probVal 
+ * @returns {string}
+ */
+function probabilityString(probVal) {
+  return probVal.toString().replace(/\.0*$|(\.\d*[1-9])0+$/, '$1');
+}
 
 /** Calculate binomial probabilty from arbitrary condition */
 function ArbitraryProbCalc() {
   const startTime = performance.now();
-  let resultTag = document.getElementById('prob-calc-result');
-  const probValue = parseFloat(document.getElementById('probvalue').value)/100;
+  const resultTag = document.getElementById('prob-calc-result');
+  const probValuePercent = parseFloat(document.getElementById('probvalue').value);
+  const probValue = probValuePercent / 100;
   const costPer = parseFloat(document.getElementById('costper').value);
   const costPerUnit = document.getElementById("costperunit").value;
   const trials = parseInt(document.getElementById("numtrials").value);
   const targetWinnings = parseInt(document.getElementById("numwant").value);
 
-  const isValidInputTuple = inputValidityCheck(probValue,trials,targetWinnings);
-  const isValidInput = isValidInputTuple[0]
+  const isValidInputTuple = inputValidityCheck(probValue, trials, targetWinnings);
+  const isValidInput = isValidInputTuple[0];
   const errMsg = isValidInputTuple[1];
 
   if (isValidInput) {
-    let upperProb = binomial_cdf_upper(probValue,trials,targetWinnings);
-    resultTag.textContent = trials + '번 뽑아서 ' + targetWinnings + '개 이상 나올 확률: ' + (upperProb*100).toString() + '%';
+    resultTag.innerHTML = '';
+    const upperProb = binomial_cdf_upper(probValue, trials, targetWinnings);
+    const probStringPercent = probabilityString(probValuePercent);
+    const probNode = document.createElement('p');
+    probNode.textContent = probStringPercent + '% 확률 ' + parseInt(trials).toLocaleString() + '번 뽑아서 ' + targetWinnings + '개 이상 나올 확률: ' + probabilityString(upperProb * 100) + '%';
+    resultTag.appendChild(probNode);
+
+    const reqN = requiredTrials(probValue, targetWinnings, 0.5);
+    const reqNNode = document.createElement('p');
+    reqNNode.textContent = '상위 50%가 ' + probStringPercent + '% 확률 상품 ' + targetWinnings + '개 획득하는 뽑기 횟수: ' + parseInt(reqN).toLocaleString() + '회';
+    resultTag.appendChild(reqNNode);
+  }
+  else {
+    resultTag.innerHTML = '';
+    const errMsgNode = document.createElement('p');
+    errMsgNode.textContent=errMsg;
+    resultTag.appendChild(errMsgNode);
   }
 }
 
@@ -45,11 +69,11 @@ function inputValidityCheck(probValue, trials, targetWinnings) {
   if (trials < targetWinnings) {
     return [false, "계산 실패: 뽑기 횟수보다 당첨 횟수 목표가 더 많습니다!"]
   }
-  else if (probValue>=1) {
+  else if (probValue >= 1) {
     return [false, "계산 실패: 1뽑 확률이 100% 이상입니다!"]
   }
-  else if (trials>10000000) {
-    return [false, "계산 실패: 뽑기 시도 횟수가 천만 회보다 큽니다!(최대 10000000회)"]
+  else if (trials > Number.MAX_SAFE_INTEGER - 1) {
+    return [false, "계산 실패: 뽑기 시도 횟수가 너무 큽니다! (최대 9007199254740990회)"]
   }
   else {
     return [true, ""];
@@ -102,10 +126,9 @@ function binomial_cdf_upper(p, n, x) {
  * @param {number} winningProbabilityPerTrial winning probability per trials (0-1)
  * @param {number} targetWinnings target number of winnings
  * @param {number} targetProb probability taget for targetWinnings (0-1)
- * @param {number} testfun test function returns probability
  * @returns {number} required trials for target probability
  */
-function binary_probability_search(winningProbabilityPerTrial, targetWinnings, targetProb, testfun) {
+function requiredTrials(winningProbabilityPerTrial, targetWinnings, targetProb) {
   let trialsLowerBound = 1;
   let trialsUpperBound = Number.MAX_SAFE_INTEGER - 1;
   do {
@@ -113,7 +136,7 @@ function binary_probability_search(winningProbabilityPerTrial, targetWinnings, t
     if (testTrials === trialsUpperBound) {
       return trialsUpperBound; // select upper bound
     }
-    const testProb = testfun(targetWinnings - 1, testTrials, winningProbabilityPerTrial);
+    const testProb = binomial_cdf_upper(winningProbabilityPerTrial,testTrials, targetWinnings);
     if (targetProb >= testProb) { // correction to upper side
       trialsLowerBound = testTrials + 1;
     }

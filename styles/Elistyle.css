@@ -38,3 +38,13 @@ aside {
     width: 100%;
     margin-bottom: 15px;
 }
+
+#prob-calc-result p {
+    animation: glow .2s alternate;
+}
+
+@keyframes glow {
+    to {
+        background-color: var(--bs-border-color-translucent);
+    }
+}
