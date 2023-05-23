@@ -15,7 +15,7 @@ class NavBuilder extends HTMLElement
                 카드뽑기
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">변신/인형뽑기</a></li>
+                <li><a class="dropdown-item" href="/WhaleSimulator/metamorphosis">변신/인형뽑기</a></li>
                 <li><a class="dropdown-item" href="#">스킬카드뽑기</a></li>
                 <li><a class="dropdown-item" href="#">다시뽑기</a></li>
                 <li><a class="dropdown-item" href="#">코인뽑기</a></li>

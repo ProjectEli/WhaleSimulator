@@ -5,6 +5,10 @@ body {
     font-weight: bold;
 }
 
+.container-lg {
+    padding-left : 1rem;
+}
+
 .navbar-brand {
     font-weight: bolder;
 }
@@ -15,4 +19,13 @@ h2 {
 
 aside {
     float: right;
+}
+
+.card-img-top {
+    height: 12rem;
+    background-color: rgb(134, 142, 150);
+}
+
+.card {
+    width: 18rem;
 }
