@@ -50,5 +50,16 @@ class buttonList extends HTMLElement
   }
 }
 
+class customFooter extends HTMLElement
+{
+  connectedCallback() {
+    this.outerHTML =`
+    <footer class="test-center text-lg-start text-muted bd-footer">
+      <div class="text-center p-4">ProjectEli 2023, All rights reserved.</div>
+    </footer>`;
+  }
+}
+
 customElements.define('nav-placeholder',NavBuilder);
 customElements.define('buttonlist-placeholder',buttonList);
+customElements.define('footer-placeholder',customFooter)

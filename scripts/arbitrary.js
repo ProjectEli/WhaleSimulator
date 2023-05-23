@@ -30,7 +30,7 @@ function ArbitraryProbCalc() {
 
   if (isValidInput) {
     let upperProb = binomial_cdf_upper(probValue,trials,targetWinnings);
-    resultTag.textContent = trials + '번 뽑아서 ' + targetWinnings + '개 이상 나올 확률: ' + (upperProb*100).toString() + ' %';
+    resultTag.textContent = trials + '번 뽑아서 ' + targetWinnings + '개 이상 나올 확률: ' + (upperProb*100).toString() + '%';
   }
 }
 
