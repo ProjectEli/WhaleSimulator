@@ -4,7 +4,7 @@ class NavBuilder extends HTMLElement
     this.outerHTML = `
     <nav class="navbar navbar-expand-sm mb-2 bg-body-tertiary">
       <div class="container-lg">
-        <a class="navbar-brand" href="/">과금뚝배기</a>
+        <a class="navbar-brand" href="/whaleSimulator/">과금뚝배기</a>
         <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
