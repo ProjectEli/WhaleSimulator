@@ -3,7 +3,7 @@ class customMain extends HTMLElement
   connectedCallback() {
     this.outerHTML = `
     <main>
-      <div class="row row-cols-auto g-4">
+      <div class="row row-cols-auto g-4 justify-content-center">
         <div class="col">
           <div class="card h-100">
             <img class="card-img-top">

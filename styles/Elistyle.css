@@ -9,6 +9,10 @@ body {
     padding-left : 1rem;
 }
 
+.container-sm {
+    max-width: 540px;
+}
+
 .navbar-brand {
     font-weight: bolder;
 }
@@ -28,4 +32,9 @@ aside {
 
 .card {
     width: 18rem;
+}
+
+#btn-prob-calc {
+    width: 100%;
+    margin-bottom: 15px;
 }

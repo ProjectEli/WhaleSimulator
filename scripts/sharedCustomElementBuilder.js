@@ -26,6 +26,11 @@ class NavBuilder extends HTMLElement
                 직접뽑기
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/WhaleSimulator/arbitrary" role="button">
+                임의확률계산
+              </a>
+            </li>
           </ul>
         </div>
       </div>
