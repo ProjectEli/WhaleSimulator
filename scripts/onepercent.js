@@ -110,10 +110,13 @@ Chart.defaults.font.weight = 'bold';
 let resultChart = new Chart(ctx, {
   type: 'scatter',
   data: {
-    
     datasets: [{
       fill:true,
       data: coords,
+      order: 2
+    },{
+      data: [{x:50, y:69}],
+      order: 1
     }]
   },
   options: {
@@ -186,6 +189,22 @@ document.querySelectorAll("input[type='number']").forEach( (elem) =>{
       const costPerTrial = (radioButton.value === "HQ")? HQstonePocketValue * quantity: stonePocketValue * quantity;
       const ingredientName = (e.target.parentNode.querySelector("input[name='ingredients']").value === "HQ")? "고급 스톤 주머니/성장물약" : "스톤 주머니/성장물약";
       updateResult(ingredientName,quantity,costPerTrial);
+    });
+  }
+});
+
+document.querySelectorAll("input[type='range']").forEach( (elem) =>{
+  for (eventType of ["input", "change"]) {
+    elem.addEventListener(eventType, (e) => {
+      const selectedIngredient = document.querySelector("input[name='ingredients'][checked]");
+      const quantity = selectedIngredient.parentNode.parentNode.querySelector("input[type='number']").value;
+      const costPerTrial = (selectedIngredient.value === "HQ")? HQstonePocketValue * quantity: stonePocketValue * quantity;
+      const customPercent = e.target.value;
+      const customLuckResult = document.getElementById("customLuckResult");
+      const reqTrials = requiredTrials(winingRatePercent/100,1,customPercent/100.0);
+      customLuckResult.textContent = `운 상위 ${customPercent}% = ${reqTrials}회 (${(reqTrials*costPerTrial).toFixed(1)} 다이아)`;
+      resultChart.data.datasets[1].data = [{x:customPercent, y:reqTrials}];
+      resultChart.update('none');
     });
   }
 });
