@@ -22,26 +22,26 @@
         <div class="input-group">
           <div class="input-group-text">
             <input class="form-check-input mt-0" type="radio" name="ingredients" value="NM"
-              aria-label="스톤 주머니/성장물약 선택버튼" checked>
+              aria-label="스톤 주머니/성장물약 선택버튼" id="NMselect" checked>
           </div>
-          <span class="input-group-text">스톤 주머니/성장물약</span>
+          <label class="input-group-text" for="NMselect">스톤 주머니/성장물약</label>
           <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
           <input type="number" class="form-control" placeholder="수량" value="3" min="0" step="1"
             aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
             title="재료 수량: 스톤 주머니/성장물약 갯수">
-          <span class="input-group-text">개</span>
+            <label class="input-group-text" for="NMselect">개</label>
         </div>
         <div class="input-group mb-3">
           <div class="input-group-text">
             <input class="form-check-input mt-0" type="radio" name="ingredients" value="HQ"
-              aria-label="고급 스톤 주머니/성장물약 선택버튼">
+              aria-label="고급 스톤 주머니/성장물약 선택버튼" id="HQselect">
           </div>
-          <span class="input-group-text">고급 스톤 주머니/성장물약</span>
+          <label class="input-group-text" for="HQselect">고급 스톤 주머니/성장물약</label>
           <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
           <input type="number" class="form-control" placeholder="수량" value="1" min="0" step="1"
             aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
             title="재료 수량: 스톤 주머니/성장물약 갯수">
-          <span class="input-group-text">개</span>
+            <label class="input-group-text" for="HQselect">개</label>
         </div>
         <p id="costPerTrial">
           스톤 주머니/성장물약 3개 = 204.545 다이아
