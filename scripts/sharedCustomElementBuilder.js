@@ -12,17 +12,6 @@ class NavBuilder extends HTMLElement
           <ul class="navbar-nav me-auto mb-12 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                카드뽑기
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WhaleSimulator/metamorphosis">변신/인형뽑기</a></li>
-                <li><a class="dropdown-item" href="#">스킬카드뽑기</a></li>
-                <li><a class="dropdown-item" href="#">다시뽑기</a></li>
-                <li><a class="dropdown-item" href="#">코인뽑기</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 서버한정
               </a>
               <ul class="dropdown-menu">
