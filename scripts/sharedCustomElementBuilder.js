@@ -23,12 +23,17 @@ class NavBuilder extends HTMLElement
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                확률뽑기
+                서버한정
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/WhaleSimulator/onepercent">서버한정 주말특별제작 (1% 확률)</a></li>
-                <li><a class="dropdown-item" href="#">서버한정 스킬북/비법서/주문서 (3.5% 확률)</a></li>
+                <li><a class="dropdown-item" href="/WhaleSimulator/server-limited-weekly-special">주말특별제작</a></li>
+                <li><a class="dropdown-item" href="#">스킬북/비법서/주문서</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/WhaleSimulator/detailed-calc" role="button">
+                상세확률계산
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/WhaleSimulator/arbitrary" role="button">
