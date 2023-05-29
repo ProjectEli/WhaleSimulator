@@ -27,7 +27,9 @@ class NavBuilder extends HTMLElement
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/WhaleSimulator/server-limited-weekly-special">주말특별제작</a></li>
-                <li><a class="dropdown-item" href="#">스킬북/비법서/주문서</a></li>
+                <li><a class="dropdown-item" href="/WhaleSimulator/server-limited-skillbook">스킬북/비법서/주문서</a></li>
+                <li><a class="dropdown-item" href="/WhaleSimulator/server-limited-metamorphosis">변신/마법인형카드</a></li>
+                <li><a class="dropdown-item" href="/WhaleSimulator/server-limited-weapon">무기/방어구/장신구</a></li>
               </ul>
             </li>
             <li class="nav-item">
