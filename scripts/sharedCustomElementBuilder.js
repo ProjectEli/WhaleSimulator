@@ -21,10 +21,14 @@ class NavBuilder extends HTMLElement
                 <li><a class="dropdown-item" href="#">코인뽑기</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/WhaleSimulator/direct" role="button">
-                직접뽑기
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                확률뽑기
               </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/WhaleSimulator/onepercent">서버한정 주말특별제작 (1% 확률)</a></li>
+                <li><a class="dropdown-item" href="#">서버한정 스킬북/비법서/주문서 (3.5% 확률)</a></li>
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/WhaleSimulator/arbitrary" role="button">
@@ -55,11 +59,14 @@ class customFooter extends HTMLElement
   connectedCallback() {
     this.outerHTML =`
     <footer class="test-center text-lg-start text-muted bd-footer">
-      <div class="text-center p-4">ProjectEli 2023, All rights reserved.</div>
+      <div class="text-center p-4">
+        © 2023 <a target="_blank" href="https://projecteli.tistory.com">ProjectEli</a> &
+        <a target="_blank" href="https://www.youtube.com/@nuttube2020">누뜨</a>
+      </div>
     </footer>`;
   }
 }
 
 customElements.define('nav-placeholder',NavBuilder);
 customElements.define('buttonlist-placeholder',buttonList);
-customElements.define('footer-placeholder',customFooter)
+customElements.define('footer-placeholder',customFooter);

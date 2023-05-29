@@ -21,6 +21,10 @@ h2 {
     font-weight: bolder;
 }
 
+section {
+    margin-bottom: 24px;
+}
+
 aside {
     float: right;
 }

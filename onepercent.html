@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>과금뚝배기 - 확률제작</title>
+  <head-placeholder></head-placeholder>
+  <script src="scripts/headBuilder.js"></script>
+
+</head>
+
+<body>
+  <nav-placeholder></nav-placeholder>
+  <div class="container-lg">
+    <main-placeholder></main-placeholder>
+
+    <div class="container-sm">
+      <h2>서버한정 주말특별제작 (1% 확률)</h2>
+      <section>
+        <h3>재료 입력</h3>
+        <div class="input-group">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="radio" name="ingredients" value="NM"
+              aria-label="스톤 주머니/성장물약 선택버튼" checked>
+          </div>
+          <span class="input-group-text">스톤 주머니/성장물약</span>
+          <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
+          <input type="number" class="form-control" placeholder="수량" value="3" min="0" step="1"
+            aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            title="재료 수량: 스톤 주머니/성장물약 갯수">
+          <span class="input-group-text">개</span>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="radio" name="ingredients" value="HQ"
+              aria-label="고급 스톤 주머니/성장물약 선택버튼">
+          </div>
+          <span class="input-group-text">고급 스톤 주머니/성장물약</span>
+          <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
+          <input type="number" class="form-control" placeholder="수량" value="1" min="0" step="1"
+            aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            title="재료 수량: 스톤 주머니/성장물약 갯수">
+          <span class="input-group-text">개</span>
+        </div>
+        <p id="costPerTrial">
+          스톤 주머니/성장물약 3개 = 204.545 다이아
+        </p>
+      </section>
+
+      <section>
+        <h3>1. 예상 뽑기 횟수 및 비용</h3>
+        <table class="table" id="estimationTable">
+          <thead>
+            <tr>
+              <th scope="col">유형</th>
+              <th scope="col">상위 백분율</th>
+              <th scope="col">뽑기 횟수</th>
+              <th scope="col">예상 비용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">운 좋을 때</th>
+              <td>25%</td>
+              <td>29회</td>
+              <td>5931.8 다이아</td>
+            </tr>
+            <tr>
+              <th scope="row">평균 운</th>
+              <td>50%</td>
+              <td>69회</td>
+              <td>14113.6 다이아</td>
+            </tr>
+            <tr>
+              <th scope="row">운 없을 때</th>
+              <td>75%</td>
+              <td>137회</td>
+              <td>28022.7 다이아</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          상위 백분율 50%: 100명 중 50번째 운 좋은 사람이 뽑는 횟수.
+        </p>
+      </section>
+      
+
+      <h3>2. 확률 분포</h3>
+      <div class="w-auto p-2 chart-container" style="position: relative; height:100%; width:100%">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <footer-placeholder></footer-placeholder>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="scripts/sharedCustomElementBuilder.js"></script>
+  <script src="scripts/onepercent.js"></script>
+</body>
+
+</html>
