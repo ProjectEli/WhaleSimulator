@@ -1,5 +1,4 @@
-class NavBuilder extends HTMLElement
-{
+class NavBuilder extends HTMLElement {
   connectedCallback() {
     this.outerHTML = `
     <nav class="navbar navbar-expand-sm mb-2 bg-body-tertiary">
@@ -32,28 +31,40 @@ class NavBuilder extends HTMLElement
               </a>
             </li>
           </ul>
+          <button type="button" class="btn btn-outline-warning navbar-btn" id="toggleColorMode">컬러모드변경</button>
         </div>
       </div>
     </nav>`;
+
+    // colorworks
+    let preferredColorMode = localStorage.getItem('preferredColorMode');
+    if (preferredColorMode === 'light') {
+      document.documentElement.setAttribute('data-bs-theme', 'light');
+    }
+
+    let toggleColorMode = document.getElementById('toggleColorMode');
+
+    toggleColorMode.addEventListener("click", () => {
+      const currentColorMode = document.documentElement.getAttribute('data-bs-theme');
+      document.documentElement.setAttribute('data-bs-theme', currentColorMode == 'light' ? 'dark' : 'light');
+      localStorage.setItem('preferredColorMode',document.documentElement.getAttribute('data-bs-theme'));
+    })
   }
 }
 
-class buttonList extends HTMLElement
-{
+class buttonList extends HTMLElement {
   connectedCallback() {
     this.outerHTML = `
     <div class="container-lg mb-2">
       <button type="button" class="btn btn-outline-primary" id="generateTableButton">표 생성</button>
       <button type="button" class="btn btn-outline-danger" id="deleteTableButton">표 삭제</button>
-      <button type="button" class="btn btn-outline-warning" id="toggleColorMode">컬러모드변경</button>  
     </div>`;
   }
 }
 
-class customFooter extends HTMLElement
-{
+class customFooter extends HTMLElement {
   connectedCallback() {
-    this.outerHTML =`
+    this.outerHTML = `
     <footer class="test-center text-lg-start text-muted bd-footer">
       <div class="text-center p-4">
         © 2023 <a target="_blank" href="https://projecteli.tistory.com">ProjectEli</a> &
@@ -63,6 +74,6 @@ class customFooter extends HTMLElement
   }
 }
 
-customElements.define('nav-placeholder',NavBuilder);
-customElements.define('buttonlist-placeholder',buttonList);
-customElements.define('footer-placeholder',customFooter);
+customElements.define('nav-placeholder', NavBuilder);
+customElements.define('buttonlist-placeholder', buttonList);
+customElements.define('footer-placeholder', customFooter);

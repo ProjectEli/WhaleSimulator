@@ -3,66 +3,37 @@ class customMain extends HTMLElement
   connectedCallback() {
     this.outerHTML = `
     <main>
-      <div class="container-lg">
+      <div class="container-sm">
         <article>
-          <h2>카드뽑기</h2>
-          <aside>
-            <p>영웅등급 이상 확률: 1%, 전설등급 이상 확률: 0.1%</p>
-          </aside>
-
-          <h3>영웅등급(1% 확률)</h3>
-          <div class="accordion" id="영웅등급계산결과">
-            <div class="accordion-item">
-              <h4 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#영웅뽑기설명" aria-expanded="true" aria-controls="영웅뽑기설명">
-                  영웅등급 아무거나 1개 뽑기횟수 기댓값: 69회
-                </button>
-              </h4>
-              <div id="영웅뽑기설명" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <p>
-                    위 기댓값은 1000명 중 500명이 뽑는 확률을 의미합니다. 운 없는 500명 안에 든다면 못 뽑을수도 있습니다.
-                  </p>
-                  <p>
-                    상위 10% 기댓값: 11회<br>
-                    상위 25% 기댓값: 30회<br>
-                    상위 50% 기댓값: 69회<br>
-                    상위 75% 기댓값: 148회<br>
-                    상위 90% 기댓값: 229회<br>
-                    상위 95% 기댓값: 299회<br>
-                    상위 99% 기댓값: 459회
-                  </p>
-                  <div class="w-auto p-2">
-                    <canvas id="myChart" class="mh-100"></canvas>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h4 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#뽑기설명2" aria-expanded="true" aria-controls="뽑기설명2">
-                  영웅등급 내가 원하는 종류 1개 뽑기횟수 기댓값: 1385회
-                </button>
-              </h4>
-              <div id="뽑기설명2" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <p>
-                    위 기댓값은 1000명 중 500명이 뽑는 확률을 의미합니다. 운 없는 500명 안에 든다면 못 뽑을수도 있습니다.
-                  </p>
-                  <p>
-                    상위 10% 기댓값: 211회<br>
-                    상위 25% 기댓값: 644회<br>
-                    상위 50% 기댓값: 1385회<br>
-                    상위 75% 기댓값: 2869회<br>
-                    상위 90% 기댓값: 4605회<br>
-                    상위 95% 기댓값: 5989회<br>
-                    상위 99% 기댓값: 9209회
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <section>
+            <h2>제작 취지</h2>
+            <p>
+              2023년 기준으로 다수의 게임사들이 확률형 뽑기 아이템을 이용한 수익 모델을 도입하고 있으며, 상당수의 플레이어들이 자산을 투자하여 인게임 재화를 얻고 있다(이하 과금이라 함). 개별 플레이어의 과금 액수나 전체 과금 시장 규모는 수 년 전에 비하여 기하급수적으로 성장하였으나, 확률 정보 공개를 꺼리는 게임사와 습득할 수 있는 정보에 한계가 있는 플레이어들 간의 정보 비대칭으로 인해 실제 확률과 인지하는 확률 또는 예상 보상 기대값 간에 괴리가 발생하여 불필요한 과금을 하는 사례도 증가하고 있다.
+            </p>
+            <p>
+              2021년 초 넥슨의 메이플스토리 확률 오류 사건을 계기로 다양한 게임사에서 확률형 아이템의 설정 확률을 공개하고 있으나, 여전히 다수의 플레이어들에게는 해당 정보를 제대로 해석하기 어려운 상황이다. 따라서 확률 뽑기를 진행할 때 정확한 기댓값에 대한 계산 없이 감에 의존하여 뽑는 경우가 많으며, 결과적으로 실제와의 차이가 발생할 수 있다.
+            </p>
+            <p>
+              변동 확률의 가능성을 배제하고 독립 시행을 전제하는 경우, 공개된 확률에 대하여 예상 비용을 산출하려면 이항확률(binomial probability) 계산을 수행하야 하지만, 다수의 사람들에게 이는 귀찮거나 쉽지 않은 작업이 된다.  이를 보완하기 위하여 <a href="https://projecteli.tistory.com/199">임의의 확률 및 임의의 목표 당첨 횟수에 대해 계산할 수 있는 공개 웹앱</a>이 구현되었으나, 상황에 따라 입력값을 추가로 계산해야 하는 등 여전히 사용에 진입 장벽이 있는 것으로 파악되었다.
+            </p>
+            <p>
+              본 프로젝트는 언급된 문제점들을 극복하고 플레이어들이 좀 더 예측 가능한 소비를 할 수 있도록 다음을 추구한다.
+              <ul>
+                <li>확률형 뽑기에 대한 각종 계산의 진입장벽을 획기적으로 낮추는 온라인 플랫폼</li>
+                <li>확률형 뽑기 관련 용어 및 가치 환산에 대한 기준점을 제시하는 플랫폼</li>
+                <li>사용자가 원하는 확률 계산을 맞춤형으로 수행할 수 있는 플랫폼</li>
+                <li>계산 과정을 투명하게 공개하는 믿을 수 있는 확률 계산 플랫폼</li>
+                <li>예상 뽑기 횟수에 대한 인식과 실제의 괴리를 줄일 수 있는 설명 또는 학습 자료를 제공하는 플랫폼</li>
+                <li>합리적인 과금 문화를 정착시키는 데 기여하는 플랫폼</li>
+              </ul>
+            </p>
+            <p>
+              이를 통해 무지성 뽑기를 더이상 하지 않기를 기대한다.
+            </p>
+            <p style="text-align: right">
+              Eli (https://projecteli.tistory.com/)<br>2023.05.30
+            </p>
+          </section>
         </article>
       </div>
     </main>`
@@ -215,11 +186,3 @@ new Chart(ctx, {
     }
   }
 });
-
-// colorworks
-let toggleColorMode = document.getElementById('toggleColorMode');
-
-toggleColorMode.addEventListener("click", () => {
-    currentColorMode = document.documentElement.getAttribute('data-bs-theme');
-    document.documentElement.setAttribute('data-bs-theme',currentColorMode == 'light' ? 'dark': 'light');
-})
