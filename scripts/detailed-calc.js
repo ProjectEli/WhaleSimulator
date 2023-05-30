@@ -4,7 +4,7 @@ const defaultcostPerTrial = HQstonePocketValue;
 const winingRatePercent = 1.0;
 
 const ctx = document.getElementById('myChart');
-
+console.log(window.location);
 /**
  * Calculates upper probability
  * @param {number} p probability value from 0-1
