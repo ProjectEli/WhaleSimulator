@@ -28,7 +28,7 @@ class customMain extends HTMLElement
               </ul>
             </p>
             <p>
-              이를 통해 무지성 뽑기를 더이상 하지 않기를 기대한다.
+              인지 오류를 일으키지 않는 투명한 실시간 확률 공개가 상식이 되고 이 사이트가 더 이상 필요 없어지게 되기를 희망한다.
             </p>
             <p style="text-align: right">
               Eli (https://projecteli.tistory.com/)<br>2023.05.30
