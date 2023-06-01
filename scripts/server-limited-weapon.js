@@ -1,6 +1,7 @@
 class customMain extends HTMLElement {
   connectedCallback() {
     const stonePocketValue = 3000.0 / 44;
+    const pageTitle = '서버한정 - 무기/방어구/장신구';
 
     const rowNode = document.createElement('div');
     rowNode.classList.add("row", "row-cols-auto", "g-4", "justify-content-center");
@@ -17,14 +18,15 @@ class customMain extends HTMLElement {
       const probPercent = elem[1];
       const NMstones = elem[2];
       const HQstones = elem[3];
-      let NMstoneStrnig = (NMstones > 0) ? `스톤 주머니/성장물약 ${NMstones}개` : ``;
+      let NMstoneStrnig = (NMstones > 0) ? `스톤 주머니 ${NMstones}개` : ``;
       let HQstoneStrnig = (HQstones > 0) ? ` or 고급 스톤 주머니 ${HQstones}개` : ``;
       let costPerTrial = stonePocketValue * NMstones;
       let costString = ` (${costPerTrial.toFixed(2)}다이아)`;
       const description = `제작 확률: ${probPercent}%<br>재료: ${NMstoneStrnig}${HQstoneStrnig}${costString}`;
       const avgTrials = requiredTrials(probPercent / 100, 1, 0.5);
       const estimationString = `기댓값: ${avgTrials}회 = ${(avgTrials * costPerTrial).toFixed(1)}다이아`;
-      return [itemName, description, estimationString];
+      const queryString = `itemName=${itemName}&probPercent=${probPercent}&NMstones=${NMstones}&HQstones=${HQstones}`;
+      return [itemName, description, estimationString, queryString];
 
     });
     cardInfo.forEach((elem) => {
@@ -34,7 +36,7 @@ class customMain extends HTMLElement {
     <main>
       <div class='container-lg'>
         <div class="row row-cols-auto g-4 justify-content-center">
-          <h2>서버한정 - 무기/방어구/장신구</h2>
+          <h2>${pageTitle}</h2>
         </div>
         ${rowNode.outerHTML}
       </div>
@@ -76,11 +78,15 @@ function requiredTrials(winningProbabilityPerTrial, targetWinnings, targetProb) 
   do {
     const testTrials = Math.floor((trialsLowerBound + trialsUpperBound) / 2); // avg
     if (testTrials === trialsUpperBound) {
+      const testProb = binomial_cdf_upper(winningProbabilityPerTrial, testTrials, targetWinnings);
+      if (targetProb <= testProb) { // last correction
+        return (testTrials == 1 )? testTrials: testTrials - 1 ;
+      }
       return trialsUpperBound; // select upper bound
     }
     const testProb = binomial_cdf_upper(winningProbabilityPerTrial, testTrials, targetWinnings);
     if (targetProb >= testProb) { // correction to upper side
-      trialsLowerBound = testTrials + 1;
+      trialsLowerBound = testTrials +1 ;
     }
     else { // correction to lower side
       trialsUpperBound = testTrials - 1;
@@ -94,8 +100,9 @@ function requiredTrials(winningProbabilityPerTrial, targetWinnings, targetProb) 
  * @param {string} title 
  * @param {string} description 
  * @param {string} estimationString 
+ * @param {string} queryString 
  */
-function createCardView(parentNode, title, description, estimationString) {
+function createCardView(parentNode, title, description, estimationString, queryString) {
   const colNode = document.createElement('div');
   colNode.classList.add('col');
   colNode.innerHTML = `
@@ -107,7 +114,7 @@ function createCardView(parentNode, title, description, estimationString) {
       <p class="card-text">${estimationString}</p>
     </div>
     <div class="card-footer">
-      <a href="#" class="btn btn-outline-info w-100">상세보기</a>
+      <a href="/WhaleSimulator/detailed-calc?${queryString}" class="btn btn-outline-info w-100">상세보기</a>
     </div>
   </div>`;
   parentNode.appendChild(colNode);

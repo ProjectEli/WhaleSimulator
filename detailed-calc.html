@@ -13,10 +13,8 @@
 <body>
   <nav-placeholder></nav-placeholder>
   <div class="container-lg">
-    <main-placeholder></main-placeholder>
-
     <div class="container-sm">
-      <h2>상세확률 계산</h2>
+      <h2>상세확률 계산<span id='itemName'></span></h2>
       <section>
         <h3>재료 입력</h3>
         <div class="input-group">
@@ -28,7 +26,7 @@
           <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
           <input type="number" class="form-control" placeholder="수량" value="3" min="0" step="1"
             aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            title="재료 수량: 스톤 주머니/성장물약 갯수">
+            title="재료 수량: 스톤 주머니/성장물약 갯수" id="NMstoneQuantity">
             <label class="input-group-text" for="NMselect">개</label>
         </div>
         <div class="input-group mb-3">
@@ -40,11 +38,25 @@
           <!-- <input type="text" class="form-control" aria-label="Text input with radio button"> -->
           <input type="number" class="form-control" placeholder="수량" value="1" min="0" step="1"
             aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            title="재료 수량: 스톤 주머니/성장물약 갯수">
+            title="재료 수량: 스톤 주머니/성장물약 갯수" id="HQstoneQuantity">
             <label class="input-group-text" for="HQselect">개</label>
         </div>
         <p id="costPerTrial">
           스톤 주머니/성장물약 3개 = 204.545 다이아
+        </p>
+      </section>
+
+      <section>
+        <h3>뽑기 확률 설정</h3>
+        <div class="input-group mb-3">
+          <label class="input-group-text">1회뽑 당첨 확률</label>
+          <input type="number" class="form-control" placeholder="1회당 당첨 확률" value="1" min="0" max="99.99999" step="0.00001"
+            aria-describedby="basic-addon2" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            title="1회 뽑기당 당첨 확률(%)" id="WinningRatePercent">
+            <label class="input-group-text">%</label>
+        </div>
+        <p id="currentWinningProbability">
+          적용 확률= 1%
         </p>
       </section>
 
@@ -90,7 +102,7 @@
       <input type="range" class="form-range" value="50" min="1" max="99" step="1" id="adjustLuckSlider">
       <p id="customLuckResult">운 상위 50% = 69회 (14113.6 다이아)</p>
       <div class="w-auto p-2 chart-container" style="position: relative; height:100%; width:100%">
-        <canvas id="myChart"></canvas>
+        <canvas id="luckChart"></canvas>
       </div>
     </div>
   </div>

@@ -130,15 +130,19 @@ function binomial_cdf_upper(p, n, x) {
  */
 function requiredTrials(winningProbabilityPerTrial, targetWinnings, targetProb) {
   let trialsLowerBound = 1;
-  let trialsUpperBound = Number.MAX_SAFE_INTEGER - 1;
+  let trialsUpperBound = Number.MAX_SAFE_INTEGER;
   do {
     const testTrials = Math.floor((trialsLowerBound + trialsUpperBound) / 2); // avg
     if (testTrials === trialsUpperBound) {
+      const testProb = binomial_cdf_upper(winningProbabilityPerTrial, testTrials, targetWinnings);
+      if (targetProb <= testProb) { // last correction
+        return (testTrials == 1 )? testTrials: testTrials - 1 ;
+      }
       return trialsUpperBound; // select upper bound
     }
-    const testProb = binomial_cdf_upper(winningProbabilityPerTrial,testTrials, targetWinnings);
+    const testProb = binomial_cdf_upper(winningProbabilityPerTrial, testTrials, targetWinnings);
     if (targetProb >= testProb) { // correction to upper side
-      trialsLowerBound = testTrials + 1;
+      trialsLowerBound = testTrials +1 ;
     }
     else { // correction to lower side
       trialsUpperBound = testTrials - 1;
