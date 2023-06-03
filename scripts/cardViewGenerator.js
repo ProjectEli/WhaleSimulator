@@ -14,7 +14,7 @@ function createCardView(parentNode, title, description, estimationString, queryS
   colNode.classList.add('col');
   colNode.innerHTML = `
   <div class="card h-100">
-    <img class="card-img-top m-2" src="img/${imgFileName}">
+    <img class="card-img-top p-2" src="img/${imgFileName}">
     <div class="card-body border-top">
       <h5 class="card-title">${title}</h5>
       <p class="card-text">${description}</p>
