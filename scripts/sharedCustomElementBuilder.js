@@ -1,4 +1,4 @@
-class NavBuilder extends HTMLElement {
+class customNav extends HTMLElement {
   connectedCallback() {
     this.outerHTML = `
     <nav class="navbar navbar-expand-sm mb-2 bg-body-tertiary">
@@ -52,16 +52,6 @@ class NavBuilder extends HTMLElement {
   }
 }
 
-class buttonList extends HTMLElement {
-  connectedCallback() {
-    this.outerHTML = `
-    <div class="container-lg mb-2">
-      <button type="button" class="btn btn-outline-primary" id="generateTableButton">표 생성</button>
-      <button type="button" class="btn btn-outline-danger" id="deleteTableButton">표 삭제</button>
-    </div>`;
-  }
-}
-
 class customFooter extends HTMLElement {
   connectedCallback() {
     this.outerHTML = `
@@ -74,6 +64,5 @@ class customFooter extends HTMLElement {
   }
 }
 
-customElements.define('nav-placeholder', NavBuilder);
-customElements.define('buttonlist-placeholder', buttonList);
+customElements.define('nav-placeholder', customNav);
 customElements.define('footer-placeholder', customFooter);

@@ -1,0 +1,1 @@
+export const stonePocketValue = 3000.0 / 44;
