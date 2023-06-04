@@ -1,21 +1,125 @@
 <!doctype html>
 <html lang="ko" data-bs-theme="dark">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>과금뚝배기</title>
-    <head-placeholder></head-placeholder>
-    <script src="scripts/headBuilder.js"></script>
-    
-  </head>
-  <body>
-    <nav-placeholder></nav-placeholder>
-    <main-placeholder></main-placeholder>
-    <footer-placeholder></footer-placeholder>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
-    <script src="scripts/sharedCustomElementBuilder.js"></script>
-    <script src="scripts/indexBuilder.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>과금뚝배기</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/Elistyle.css">
+</head>
+
+<body>
+  <nav-placeholder></nav-placeholder>
+  <main>
+    <div class="container-sm">
+      <div class="accordion">
+        <div class="accordion-item">
+          <h4 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#제작취지"
+              aria-expanded="false" aria-controls="#제작취지">
+              제작 취지
+            </button>
+          </h4>
+          <div id="제작취지" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <p>
+                2023년 기준으로 다수의 게임사들이 확률형 뽑기 아이템을 이용한 수익 모델을 도입하고 있으며, 상당수의 플레이어들이 자산을 투자하여 인게임 재화를 얻고 있다(이하 과금이라 함). 개별 플레이어의 과금 액수나 전체 과금 시장 규모는 수 년 전에 비하여 기하급수적으로 성장하였으나, 확률 정보 공개를 꺼리는 게임사와 습득할 수 있는 정보에 한계가 있는 플레이어들 간의 정보 비대칭으로 인해 실제 확률과 인지하는 확률 또는 예상 보상 기대값 간에 괴리가 발생하여 불필요한 과금을 하는 사례도 증가하고 있다.
+              </p>
+              <p>
+                2021년 초 넥슨의 메이플스토리 확률 오류 사건을 계기로 다양한 게임사에서 확률형 아이템의 설정 확률을 공개하고 있으나, 여전히 다수의 플레이어들에게는 해당 정보를 제대로 해석하기 어려운 상황이다. 따라서 확률 뽑기를 진행할 때 정확한 기댓값에 대한 계산 없이 감에 의존하여 뽑는 경우가 많으며, 결과적으로 실제와의 차이가 발생할 수 있다.
+              </p>
+              <p>
+                변동 확률의 가능성을 배제하고 독립 시행을 전제하는 경우, 공개된 확률에 대하여 예상 비용을 산출하려면 이항확률(binomial probability) 계산을 수행하여야 하지만, 다수의 사람들에게 이는 귀찮거나 쉽지 않은 작업이 된다. 이를 보완하기 위하여 <a href="https://projecteli.tistory.com/199">임의의 확률 및 임의의 목표 당첨 횟수에 대해 계산할 수 있는 공개 웹앱</a>이 구현되었으나, 상황에 따라 입력값을 추가로 계산해야 하는 등 여전히 사용에 진입 장벽이 있는 것으로 파악되었다.
+              </p>
+              <p>
+                본 프로젝트는 언급된 문제점들을 극복하고 플레이어들이 좀 더 예측 가능한 소비를 할 수 있도록 다음을 추구한다.
+              </p>
+              <ul>
+                <li>확률형 뽑기에 대한 각종 계산의 진입장벽을 획기적으로 낮추는 온라인 플랫폼</li>
+                <li>확률형 뽑기 관련 용어 및 가치 환산에 대한 기준점을 제시하는 플랫폼</li>
+                <li>사용자가 원하는 확률 계산을 맞춤형으로 수행할 수 있는 플랫폼</li>
+                <li>계산 과정을 투명하게 공개하는 믿을 수 있는 확률 계산 플랫폼</li>
+                <li>예상 뽑기 횟수에 대한 인식과 실제의 괴리를 줄일 수 있는 설명 또는 학습 자료를 제공하는 플랫폼</li>
+                <li>합리적인 과금 문화를 정착시키는 데 기여하는 플랫폼</li>
+              </ul>
+              <p style="text-align: right">
+                Eli (https://projecteli.tistory.com/)<br>2023.05.30
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h4 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#이용안내"
+              aria-expanded="false" aria-controls="#이용안내">
+              이용 안내
+            </button>
+          </h4>
+          <div id="이용안내" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              <p>
+                확률형 아이템을 뽑기 전 평균적으로 얼마의 뽑기 횟수 또는 재화가 필요한지 계산해볼 수 있도록 만들었습니다. 2023년 6월 기준으로 리니지 M에 대한 각종 확률 계산이 구현되어 있으며, 사용 방법은 다음과 같습니다.
+              </p>
+              <ul>
+                <li>상단 메뉴에서 원하는 항목을 눌러 이동 및 사용합니다.</li>
+                <li>모든 계산은 입력창 내용 변경(엔터키 누르거나 입력 후 주변부 클릭)과 동시에 자동으로 계산 및 결과를 표시합니다.</li>
+              </ul>
+              <p>
+                본 사이트는 특정 게임사의 공식 의견을 대변하지 않으며, 사이트에 포함된 게임 아이템 이미지 등 애셋은 이용자의 편의를 돕기 위한 공익 목적으로만 사용되며, 영리적 목적으로 사용되지 않습니다. 사이트 내용 또는 이용 관련 문의가 있는 경우 다음으로 연락 주세요.
+              </p>
+              <ul>
+                <li>
+                  Eli
+                  <ul>
+                    <li>역할: 개발 총괄</li>
+                    <li>연락처: projectschnee _at_ gmail.com</li>
+                  </ul>
+                </li>
+                <li>
+                  누뜨
+                  <ul>
+                    <li>역할: 게임 확률 정보 제공, 프로젝트 아이디어 제공</li>
+                    <li>연락처: 카톡아이디 nuttube</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h4 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#계산과정설명"
+              aria-expanded="false" aria-controls="#계산과정설명">
+              계산 과정에 대한 설명
+            </button>
+          </h4>
+          <div id="계산과정설명" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <p>
+                계산 결과는 편의상 소숫점 자릿수를 제한하고 있으나, 계산 과정에서는 자바스크립트의 64비트 double 자료형을 사용하여 계산 정밀도를 최대한 확보하기 위해 노력하였습니다.
+              </p>
+              <p>
+                확률 계산은 이전 뽑기결과가 다음 뽑기에 영향을 미치지 않는 독립시행 기준으로 수행되며, 당첨과 꽝의 두 종류가 있는 이항분포 계산 원리에 기반하고 있습니다.
+              </p>
+              <p>
+                본 사이트의 모든 계산 과정은 공개된 클라이언트 사이드 스크립트를 통해 수행되며, 웹브라우저에서 F12를 눌러 개발자 도구를 연 후 source 항목의 js 파일들을 통해 확인하실 수 있습니다. 기초 이항분포에 관한 계산은 웹 사이트에 로드된 probability.js 파일에 들어 있습니다. 웹사이트에 표시되는 코드 원본은 <a href="https://github.com/ProjectEli/WhaleSimulator">ProjectEli Github 페이지</a>에서 확인하실 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer-placeholder></footer-placeholder>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <script src="scripts/sharedCustomElementBuilder.js"></script>
+  <script src="scripts/indexBuilder.js"></script>
+</body>
+
 </html>

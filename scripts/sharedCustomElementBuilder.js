@@ -62,7 +62,7 @@ class customFooter extends HTMLElement {
     this.outerHTML = `
     <footer class="test-center text-lg-start text-muted bd-footer">
       <div class="text-center p-4">
-        © 2023 <a target="_blank" href="https://projecteli.tistory.com">ProjectEli</a> &
+        © 2023 <a target="_blank" href="https://projecteli.tistory.com/page/About">ProjectEli</a> &
         <a target="_blank" href="https://www.youtube.com/@nuttube2020">누뜨</a>
       </div>
     </footer>`;
