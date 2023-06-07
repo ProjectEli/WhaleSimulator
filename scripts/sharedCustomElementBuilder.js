@@ -84,4 +84,4 @@ class customGA extends HTMLElement {
 
 customElements.define('nav-placeholder', customNav);
 customElements.define('footer-placeholder', customFooter);
-customElements.define('GA-placeholder', customGA);
+customElements.define('ga-placeholder', customGA);
