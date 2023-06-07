@@ -69,5 +69,19 @@ class customFooter extends HTMLElement {
   }
 }
 
+class customGA extends HTMLElement {
+  connectedCallback() {
+    this.outerHTML = `
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z56NDSFN7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5Z56NDSFN7');
+    </script>`;
+  }
+}
+
 customElements.define('nav-placeholder', customNav);
 customElements.define('footer-placeholder', customFooter);
+customElements.define('GA-placeholder', customGA);
